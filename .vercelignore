@@ -1,0 +1,13 @@
+node_modules
+.npm-cache
+.pnpm-store
+.git
+.github
+.agents
+.claude
+.codex
+coverage
+dist
+packages/*/dist
+*.tsbuildinfo
+.DS_Store

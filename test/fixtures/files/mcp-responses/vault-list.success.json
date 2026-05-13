@@ -1,0 +1,18 @@
+{
+  "jsonrpc": "2.0",
+  "id": "fixture-vault-list",
+  "result": {
+    "tool": "vault_list",
+    "output": {
+      "entries": [
+        {
+          "key": "GROQ_API_KEY",
+          "serviceId": "groq",
+          "maskedValue": "********",
+          "status": "stored",
+          "scope": "server"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,51 @@
+id: fixture-llm
+name: Fixture LLM
+slug: fixture-llm
+category: llm
+description: Deterministic test-only OpenAI-compatible service fixture.
+url: https://fixture.example
+tags:
+  - fixture
+  - llm
+  - openai-compatible
+capability:
+  - prompt
+  - config
+  - test
+config:
+  urls:
+    homepage: https://fixture.example
+    console: https://console.fixture.example
+    apiKeys: https://console.fixture.example/api-keys
+    docs: https://docs.fixture.example
+  freeTier:
+    status: free_tier
+    summary: Test-only free tier text.
+    requiresCreditCard: false
+    confidence: high
+  env:
+    - key: FIXTURE_LLM_API_KEY
+      secret: true
+      public: false
+      required: true
+      pattern: ^fixture-[a-z0-9-]+$
+      description: Test-only API key placeholder.
+  prompt:
+    setupUrl: https://console.fixture.example/api-keys
+    projectNamePattern: baipiao-${project_slug}
+    steps:
+      - Open the fixture API key page.
+      - Create a test-only key named baipiao-${project_slug}.
+      - Return only the requested env assignment.
+    safety:
+      - Do not paste account passwords.
+      - Do not include browser cookies or session tokens.
+    outputFormat:
+      - FIXTURE_LLM_API_KEY=...
+  test:
+    type: openai_compatible_chat
+    baseUrl: https://api.fixture.example/openai/v1
+    envKey: FIXTURE_LLM_API_KEY
+    modelHint: fixture-chat
+  risks:
+    - Fixture values must never be production credentials.

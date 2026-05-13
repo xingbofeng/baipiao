@@ -1,0 +1,49 @@
+id: groq
+name: Groq
+slug: groq
+category: llm
+description: Fast OpenAI-compatible LLM inference API.
+url: https://groq.com
+tags:
+  - llm
+  - openai-compatible
+capability:
+  - prompt
+  - config
+  - test
+config:
+  urls:
+    homepage: https://groq.com
+    console: https://console.groq.com
+    apiKeys: https://console.groq.com/keys
+    docs: https://console.groq.com/docs
+  freeTier:
+    status: free_tier
+    summary: Free developer tier available.
+    requiresCreditCard: false
+    confidence: medium
+  env:
+    - key: GROQ_API_KEY
+      secret: true
+      public: false
+      required: true
+      pattern: ^gsk_[A-Za-z0-9]+$
+      description: Groq API key.
+  prompt:
+    setupUrl: https://console.groq.com/keys
+    projectNamePattern: baipiao-${project_slug}
+    steps:
+      - Open https://console.groq.com/keys.
+      - Create an API key named baipiao-${project_slug}.
+      - Copy only the generated API key.
+    safety:
+      - Do not save the Groq website password.
+    outputFormat:
+      - GROQ_API_KEY=...
+  test:
+    type: openai_compatible_chat
+    baseUrl: https://api.groq.com/openai/v1
+    envKey: GROQ_API_KEY
+    modelHint: llama-3.1-8b-instant
+  risks:
+    - Keep server-side. Do not expose in frontend code.

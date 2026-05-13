@@ -1,0 +1,63 @@
+id: supabase
+name: Supabase
+slug: supabase
+category: database
+description: Hosted Postgres, Auth, Storage, and edge platform.
+url: https://supabase.com
+tags:
+  - database
+  - baas
+  - auth
+capability:
+  - prompt
+  - config
+  - test
+config:
+  urls:
+    homepage: https://supabase.com
+    console: https://supabase.com/dashboard
+    docs: https://supabase.com/docs
+  freeTier:
+    status: free_tier
+    summary: Free project tier available.
+    requiresCreditCard: false
+    confidence: medium
+  env:
+    - key: SUPABASE_URL
+      secret: false
+      public: true
+      required: true
+      pattern: ^https://[a-zA-Z0-9-]+\.supabase\.co$
+      description: Supabase project URL.
+    - key: SUPABASE_ANON_KEY
+      secret: true
+      public: true
+      required: true
+      pattern: ^eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$
+      description: Supabase anon key.
+    - key: SUPABASE_SERVICE_ROLE_KEY
+      secret: true
+      public: false
+      required: false
+      pattern: ^eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$
+      description: Supabase service role key. Never expose to frontend code.
+  prompt:
+    setupUrl: https://supabase.com/dashboard/projects
+    projectNamePattern: baipiao-${project_slug}
+    steps:
+      - Open https://supabase.com/dashboard/projects.
+      - Create or select a project named baipiao-${project_slug}.
+      - Go to Project Settings > API.
+      - Copy the project URL, anon key, and service role key if needed.
+    safety:
+      - Never expose SUPABASE_SERVICE_ROLE_KEY to frontend code.
+    outputFormat:
+      - SUPABASE_URL=...
+      - SUPABASE_ANON_KEY=...
+      - SUPABASE_SERVICE_ROLE_KEY=...
+  test:
+    type: supabase
+    urlEnvKey: SUPABASE_URL
+    anonKeyEnvKey: SUPABASE_ANON_KEY
+  risks:
+    - SUPABASE_SERVICE_ROLE_KEY is server-only.

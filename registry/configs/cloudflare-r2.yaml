@@ -1,0 +1,79 @@
+id: cloudflare-r2
+name: Cloudflare R2
+slug: cloudflare-r2
+category: object_storage
+description: S3-compatible object storage from Cloudflare.
+url: https://www.cloudflare.com/developer-platform/products/r2/
+tags:
+  - storage
+  - object-storage
+  - s3-compatible
+capability:
+  - prompt
+  - config
+  - test
+config:
+  urls:
+    homepage: https://www.cloudflare.com/developer-platform/products/r2/
+    console: https://dash.cloudflare.com
+    docs: https://developers.cloudflare.com/r2/
+  freeTier:
+    status: free_tier
+    summary: Free tier available with documented limits.
+    requiresCreditCard: false
+    confidence: medium
+  env:
+    - key: CLOUDFLARE_ACCOUNT_ID
+      secret: false
+      public: false
+      required: true
+      pattern: ^[a-f0-9]{32}$
+      description: Cloudflare account ID.
+    - key: R2_BUCKET_NAME
+      secret: false
+      public: false
+      required: true
+      pattern: ^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$
+      description: R2 bucket name.
+    - key: R2_ENDPOINT
+      secret: false
+      public: false
+      required: true
+      pattern: ^https://[a-f0-9]+\.r2\.cloudflarestorage\.com$
+      description: R2 S3-compatible endpoint.
+    - key: R2_ACCESS_KEY_ID
+      secret: true
+      public: false
+      required: true
+      pattern: ^[A-Za-z0-9]{20,}$
+      description: R2 access key ID.
+    - key: R2_SECRET_ACCESS_KEY
+      secret: true
+      public: false
+      required: true
+      pattern: ^[A-Za-z0-9/+_=\-]{30,}$
+      description: R2 secret access key.
+  prompt:
+    setupUrl: https://dash.cloudflare.com
+    projectNamePattern: baipiao-${project_slug}-assets
+    steps:
+      - Open https://dash.cloudflare.com.
+      - Create an R2 bucket named baipiao-${project_slug}-assets unless the user chooses another name.
+      - Create S3-compatible R2 API credentials scoped to the bucket.
+      - Copy account ID, bucket name, endpoint, access key ID, and secret access key.
+    safety:
+      - Do not create account-wide admin tokens, delete existing buckets or objects, or enable paid features.
+    outputFormat:
+      - CLOUDFLARE_ACCOUNT_ID=...
+      - R2_BUCKET_NAME=...
+      - R2_ENDPOINT=...
+      - R2_ACCESS_KEY_ID=...
+      - R2_SECRET_ACCESS_KEY=...
+  test:
+    type: s3_compatible
+    endpointEnvKey: R2_ENDPOINT
+    accessKeyEnvKey: R2_ACCESS_KEY_ID
+    secretKeyEnvKey: R2_SECRET_ACCESS_KEY
+    bucketEnvKey: R2_BUCKET_NAME
+  risks:
+    - Keep R2 credentials server-side.

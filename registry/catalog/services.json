@@ -1,0 +1,411 @@
+[
+  {
+    "id": "groq",
+    "name": "Groq",
+    "slug": "groq",
+    "category": "llm",
+    "capability": [
+      "prompt",
+      "config",
+      "test"
+    ],
+    "description": "Fast OpenAI-compatible LLM inference API.",
+    "url": "https://groq.com",
+    "tags": [
+      "llm",
+      "openai-compatible"
+    ],
+    "config": {
+      "urls": {
+        "homepage": "https://groq.com",
+        "console": "https://console.groq.com",
+        "apiKeys": "https://console.groq.com/keys",
+        "docs": "https://console.groq.com/docs"
+      },
+      "freeTier": {
+        "status": "free_tier",
+        "summary": "Free developer tier available.",
+        "requiresCreditCard": false,
+        "confidence": "medium"
+      },
+      "env": [
+        {
+          "key": "GROQ_API_KEY",
+          "secret": true,
+          "required": true,
+          "pattern": "^gsk_[A-Za-z0-9]+$",
+          "description": "Groq API key.",
+          "public": false
+        }
+      ],
+      "prompt": {
+        "setupUrl": "https://console.groq.com/keys",
+        "projectNamePattern": "baipiao-${project_slug}",
+        "steps": [
+          "Open https://console.groq.com/keys.",
+          "Create an API key named baipiao-${project_slug}.",
+          "Copy only the generated API key."
+        ],
+        "safety": [
+          "Do not save the Groq website password."
+        ],
+        "outputFormat": [
+          "GROQ_API_KEY=..."
+        ]
+      },
+      "test": {
+        "type": "openai_compatible_chat",
+        "baseUrl": "https://api.groq.com/openai/v1",
+        "envKey": "GROQ_API_KEY",
+        "modelHint": "llama-3.1-8b-instant"
+      },
+      "risks": [
+        "Keep server-side. Do not expose in frontend code."
+      ]
+    }
+  },
+  {
+    "id": "openrouter",
+    "name": "OpenRouter",
+    "slug": "openrouter",
+    "category": "llm",
+    "capability": [
+      "prompt",
+      "config",
+      "test"
+    ],
+    "description": "Unified LLM gateway with OpenAI-compatible API.",
+    "url": "https://openrouter.ai",
+    "tags": [
+      "llm",
+      "openai-compatible"
+    ],
+    "config": {
+      "urls": {
+        "homepage": "https://openrouter.ai",
+        "console": "https://openrouter.ai",
+        "apiKeys": "https://openrouter.ai/settings/keys",
+        "docs": "https://openrouter.ai/docs"
+      },
+      "freeTier": {
+        "status": "free_tier",
+        "summary": "Free models and limited free usage may be available.",
+        "requiresCreditCard": false,
+        "confidence": "medium"
+      },
+      "env": [
+        {
+          "key": "OPENROUTER_API_KEY",
+          "secret": true,
+          "required": true,
+          "pattern": "^sk-or-v1-[A-Za-z0-9_-]+$",
+          "description": "OpenRouter API key.",
+          "public": false
+        }
+      ],
+      "prompt": {
+        "setupUrl": "https://openrouter.ai/settings/keys",
+        "projectNamePattern": "baipiao-${project_slug}",
+        "steps": [
+          "Open https://openrouter.ai/settings/keys.",
+          "Create an API key named baipiao-${project_slug}.",
+          "Copy only the generated API key."
+        ],
+        "safety": [
+          "Do not purchase credits or click payment upgrade actions."
+        ],
+        "outputFormat": [
+          "OPENROUTER_API_KEY=..."
+        ]
+      },
+      "test": {
+        "type": "openai_compatible_chat",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "envKey": "OPENROUTER_API_KEY",
+        "modelHint": "openrouter/auto"
+      },
+      "risks": [
+        "Keep server-side. Do not expose in frontend code."
+      ]
+    }
+  },
+  {
+    "id": "gemini",
+    "name": "Gemini API",
+    "slug": "gemini",
+    "category": "llm",
+    "capability": [
+      "prompt",
+      "config",
+      "test"
+    ],
+    "description": "Google Gemini API for text and multimodal generation.",
+    "url": "https://ai.google.dev",
+    "tags": [
+      "llm",
+      "google"
+    ],
+    "config": {
+      "urls": {
+        "homepage": "https://ai.google.dev",
+        "console": "https://aistudio.google.com",
+        "apiKeys": "https://aistudio.google.com/app/apikey",
+        "docs": "https://ai.google.dev/gemini-api/docs"
+      },
+      "freeTier": {
+        "status": "free_tier",
+        "summary": "Free API usage may be available with documented limits.",
+        "requiresCreditCard": false,
+        "confidence": "medium"
+      },
+      "env": [
+        {
+          "key": "GEMINI_API_KEY",
+          "secret": true,
+          "required": true,
+          "pattern": "^[A-Za-z0-9_-]{20,}$",
+          "description": "Gemini API key.",
+          "public": false
+        }
+      ],
+      "prompt": {
+        "setupUrl": "https://aistudio.google.com/app/apikey",
+        "projectNamePattern": "baipiao-${project_slug}",
+        "steps": [
+          "Open https://aistudio.google.com/app/apikey.",
+          "Create or select a Google Cloud project named like baipiao-${project_slug}.",
+          "Create an API key and copy only the key."
+        ],
+        "safety": [
+          "Do not save the Google password or enable paid Google Cloud services."
+        ],
+        "outputFormat": [
+          "GEMINI_API_KEY=..."
+        ]
+      },
+      "test": {
+        "type": "http",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models?key=${GEMINI_API_KEY}",
+        "method": "GET",
+        "expectedStatus": 200
+      },
+      "risks": [
+        "Keep server-side. Do not expose in frontend code."
+      ]
+    }
+  },
+  {
+    "id": "supabase",
+    "name": "Supabase",
+    "slug": "supabase",
+    "category": "database",
+    "capability": [
+      "prompt",
+      "config",
+      "test"
+    ],
+    "description": "Hosted Postgres, Auth, Storage, and edge platform.",
+    "url": "https://supabase.com",
+    "tags": [
+      "database",
+      "baas",
+      "auth"
+    ],
+    "config": {
+      "urls": {
+        "homepage": "https://supabase.com",
+        "console": "https://supabase.com/dashboard",
+        "docs": "https://supabase.com/docs"
+      },
+      "freeTier": {
+        "status": "free_tier",
+        "summary": "Free project tier available.",
+        "requiresCreditCard": false,
+        "confidence": "medium"
+      },
+      "env": [
+        {
+          "key": "SUPABASE_URL",
+          "secret": false,
+          "required": true,
+          "pattern": "^https://[a-zA-Z0-9-]+\\.supabase\\.co$",
+          "description": "Supabase project URL.",
+          "public": true
+        },
+        {
+          "key": "SUPABASE_ANON_KEY",
+          "secret": true,
+          "required": true,
+          "pattern": "^eyJ[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+$",
+          "description": "Supabase anon key.",
+          "public": true
+        },
+        {
+          "key": "SUPABASE_SERVICE_ROLE_KEY",
+          "secret": true,
+          "required": false,
+          "pattern": "^eyJ[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+$",
+          "description": "Supabase service role key. Never expose to frontend code.",
+          "public": false
+        }
+      ],
+      "prompt": {
+        "setupUrl": "https://supabase.com/dashboard/projects",
+        "projectNamePattern": "baipiao-${project_slug}",
+        "steps": [
+          "Open https://supabase.com/dashboard/projects.",
+          "Create or select a project named baipiao-${project_slug}.",
+          "Go to Project Settings > API.",
+          "Copy the project URL, anon key, and service role key if needed."
+        ],
+        "safety": [
+          "Never expose SUPABASE_SERVICE_ROLE_KEY to frontend code."
+        ],
+        "outputFormat": [
+          "SUPABASE_URL=...",
+          "SUPABASE_ANON_KEY=...",
+          "SUPABASE_SERVICE_ROLE_KEY=..."
+        ]
+      },
+      "test": {
+        "type": "supabase",
+        "urlEnvKey": "SUPABASE_URL",
+        "anonKeyEnvKey": "SUPABASE_ANON_KEY"
+      },
+      "risks": [
+        "SUPABASE_SERVICE_ROLE_KEY is server-only."
+      ]
+    }
+  },
+  {
+    "id": "cloudflare-r2",
+    "name": "Cloudflare R2",
+    "slug": "cloudflare-r2",
+    "category": "object_storage",
+    "capability": [
+      "prompt",
+      "config",
+      "test"
+    ],
+    "description": "S3-compatible object storage from Cloudflare.",
+    "url": "https://www.cloudflare.com/developer-platform/products/r2/",
+    "tags": [
+      "storage",
+      "object-storage",
+      "s3-compatible"
+    ],
+    "config": {
+      "urls": {
+        "homepage": "https://www.cloudflare.com/developer-platform/products/r2/",
+        "console": "https://dash.cloudflare.com",
+        "docs": "https://developers.cloudflare.com/r2/"
+      },
+      "freeTier": {
+        "status": "free_tier",
+        "summary": "Free tier available with documented limits.",
+        "requiresCreditCard": false,
+        "confidence": "medium"
+      },
+      "env": [
+        {
+          "key": "CLOUDFLARE_ACCOUNT_ID",
+          "secret": false,
+          "required": true,
+          "pattern": "^[a-f0-9]{32}$",
+          "description": "Cloudflare account ID.",
+          "public": false
+        },
+        {
+          "key": "R2_BUCKET_NAME",
+          "secret": false,
+          "required": true,
+          "pattern": "^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$",
+          "description": "R2 bucket name.",
+          "public": false
+        },
+        {
+          "key": "R2_ENDPOINT",
+          "secret": false,
+          "required": true,
+          "pattern": "^https://[a-f0-9]+\\.r2\\.cloudflarestorage\\.com$",
+          "description": "R2 S3-compatible endpoint.",
+          "public": false
+        },
+        {
+          "key": "R2_ACCESS_KEY_ID",
+          "secret": true,
+          "required": true,
+          "pattern": "^[A-Za-z0-9]{20,}$",
+          "description": "R2 access key ID.",
+          "public": false
+        },
+        {
+          "key": "R2_SECRET_ACCESS_KEY",
+          "secret": true,
+          "required": true,
+          "pattern": "^[A-Za-z0-9/+_=\\-]{30,}$",
+          "description": "R2 secret access key.",
+          "public": false
+        }
+      ],
+      "prompt": {
+        "setupUrl": "https://dash.cloudflare.com",
+        "projectNamePattern": "baipiao-${project_slug}-assets",
+        "steps": [
+          "Open https://dash.cloudflare.com.",
+          "Create an R2 bucket named baipiao-${project_slug}-assets unless the user chooses another name.",
+          "Create S3-compatible R2 API credentials scoped to the bucket.",
+          "Copy account ID, bucket name, endpoint, access key ID, and secret access key."
+        ],
+        "safety": [
+          "Do not create account-wide admin tokens, delete existing buckets or objects, or enable paid features."
+        ],
+        "outputFormat": [
+          "CLOUDFLARE_ACCOUNT_ID=...",
+          "R2_BUCKET_NAME=...",
+          "R2_ENDPOINT=...",
+          "R2_ACCESS_KEY_ID=...",
+          "R2_SECRET_ACCESS_KEY=..."
+        ]
+      },
+      "test": {
+        "type": "s3_compatible",
+        "endpointEnvKey": "R2_ENDPOINT",
+        "accessKeyEnvKey": "R2_ACCESS_KEY_ID",
+        "secretKeyEnvKey": "R2_SECRET_ACCESS_KEY",
+        "bucketEnvKey": "R2_BUCKET_NAME"
+      },
+      "risks": [
+        "Keep R2 credentials server-side."
+      ]
+    }
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "slug": "vercel",
+    "category": "hosting",
+    "capability": [
+      "prompt"
+    ],
+    "description": "Frontend hosting, previews, and deployment platform.",
+    "url": "https://vercel.com",
+    "tags": [
+      "hosting",
+      "deployment"
+    ],
+    "config": {
+      "urls": {
+        "homepage": "https://vercel.com",
+        "console": "https://vercel.com/dashboard",
+        "docs": "https://vercel.com/docs"
+      },
+      "freeTier": {
+        "status": "free_tier",
+        "summary": "Free personal plan available with documented limits.",
+        "requiresCreditCard": false,
+        "confidence": "medium"
+      }
+    }
+  }
+]

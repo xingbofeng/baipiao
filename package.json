@@ -1,0 +1,26 @@
+{
+  "name": "baipiao-monorepo",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@8.6.1",
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b --pretty false",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "docs:dev": "pnpm --filter @baipiao/docs-site dev",
+    "docs:build": "pnpm --filter @baipiao/docs-site build",
+    "catalog:build": "pnpm --filter baipiao-core catalog:build",
+    "catalog:validate": "pnpm --filter baipiao-core catalog:validate"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.1",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.3",
+    "vitest": "^4.0.8"
+  }
+}

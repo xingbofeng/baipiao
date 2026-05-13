@@ -1,0 +1,137 @@
+<svg width="1440" height="760" viewBox="0 0 1440 760" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">baipiao Agent 配置闭环</title>
+  <desc id="desc">暗色产品流程图，展示 baipiao 从服务搜索到 MCP 可用配置的闭环。</desc>
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="34%" r="70%">
+      <stop offset="0%" stop-color="#0B2546"/>
+      <stop offset="44%" stop-color="#040B14"/>
+      <stop offset="100%" stop-color="#010409"/>
+    </radialGradient>
+    <linearGradient id="cyanStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#7DD3FC"/>
+      <stop offset="0.48" stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+    <linearGradient id="greenStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#86EFAC"/>
+      <stop offset="1" stop-color="#22C55E"/>
+    </linearGradient>
+    <linearGradient id="violetStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#60A5FA"/>
+    </linearGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.13 0 0 0 0 0.78 0 0 0 0 0.95 0 0 0 0.55 0"/>
+      <feBlend in="SourceGraphic" mode="screen"/>
+    </filter>
+    <filter id="shadow" x="-16%" y="-22%" width="132%" height="144%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000814" flood-opacity="0.65"/>
+    </filter>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto" markerUnits="strokeWidth">
+      <path d="M2 2L11 7L2 12" stroke="#67E8F9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .title { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 54px; font-weight: 760; fill: #F8FAFC; letter-spacing: 0; }
+      .subtitle { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 22px; font-weight: 450; fill: #A8B3C7; letter-spacing: 0; }
+      .node-title { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 25px; font-weight: 720; fill: #F8FAFC; letter-spacing: 0; }
+      .node-copy { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 16px; font-weight: 460; fill: #AAB7CA; letter-spacing: 0; }
+      .chip { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 14px; font-weight: 680; fill: #DFFBFF; letter-spacing: 0; }
+    </style>
+  </defs>
+
+  <rect width="1440" height="760" rx="34" fill="url(#bgGlow)"/>
+  <path d="M86 620C244 515 366 644 513 552C666 456 738 493 865 538C1026 595 1114 474 1354 547" stroke="#1E3A5F" stroke-width="2" stroke-dasharray="7 13" opacity="0.45"/>
+  <path d="M122 166C298 70 450 112 615 145C763 175 930 77 1088 105C1198 124 1263 171 1325 226" stroke="#174A70" stroke-width="2" stroke-dasharray="8 16" opacity="0.36"/>
+  <circle cx="720" cy="388" r="272" stroke="#123D5F" stroke-width="1.5" opacity="0.45"/>
+  <circle cx="720" cy="388" r="206" stroke="#1E5B83" stroke-width="1.2" opacity="0.28"/>
+
+  <text x="96" y="98" class="title">baipiao 配置闭环</text>
+  <text x="98" y="135" class="subtitle">从免费服务发现到 MCP 可用配置，密钥始终留在安全边界内。</text>
+
+  <g transform="translate(982 76)">
+    <rect width="254" height="42" rx="21" fill="#07131F" stroke="#1E5B83"/>
+    <circle cx="26" cy="21" r="7" fill="#22C55E" filter="url(#softGlow)"/>
+    <text x="46" y="27" class="chip">本地 VAULT · AGENT 安全</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <g transform="translate(88 252)">
+      <rect width="255" height="132" rx="18" fill="#07111D" stroke="url(#cyanStroke)" stroke-width="1.4"/>
+      <rect x="18" y="20" width="46" height="46" rx="13" fill="#081B2A" stroke="#1E5B83"/>
+      <path d="M35 49L27 41L35 33M48 33L56 41L48 49" stroke="#67E8F9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="82" y="49" class="node-title">搜索</text>
+      <text x="82" y="78" class="node-copy">发现免费服务</text>
+      <text x="82" y="101" class="node-copy">按角色、供应商或技术栈筛选。</text>
+    </g>
+
+    <g transform="translate(407 252)">
+      <rect width="255" height="132" rx="18" fill="#07111D" stroke="url(#violetStroke)" stroke-width="1.4"/>
+      <rect x="18" y="20" width="46" height="46" rx="13" fill="#0B1428" stroke="#334D96"/>
+      <path d="M29 39H53M29 51H45M55 51L60 56M57 49L60 46" stroke="#A78BFA" stroke-width="3" stroke-linecap="round"/>
+      <text x="82" y="49" class="node-title">提示词</text>
+      <text x="82" y="78" class="node-copy">生成精确配置</text>
+      <text x="82" y="101" class="node-copy">提示词交给 Agent 执行。</text>
+    </g>
+
+    <g transform="translate(726 252)">
+      <rect width="255" height="132" rx="18" fill="#07111D" stroke="url(#cyanStroke)" stroke-width="1.4"/>
+      <rect x="18" y="20" width="46" height="46" rx="13" fill="#081B2A" stroke="#1E5B83"/>
+      <path d="M32 50C28 47 26 43 26 38C26 29 33 24 42 24C51 24 58 29 58 38C58 47 51 54 42 54C39 54 36 53 34 52L27 56L32 50Z" stroke="#67E8F9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="82" y="49" class="node-title">配置</text>
+      <text x="82" y="78" class="node-copy">Agent 处理服务商</text>
+      <text x="82" y="101" class="node-copy">控制台配置，并保持边界。</text>
+    </g>
+
+    <g transform="translate(1045 252)">
+      <rect width="255" height="132" rx="18" fill="#07111D" stroke="url(#greenStroke)" stroke-width="1.4"/>
+      <rect x="18" y="20" width="46" height="46" rx="13" fill="#0B1F19" stroke="#1D6F48"/>
+      <path d="M29 42L38 51L57 31" stroke="#86EFAC" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="82" y="49" class="node-title">回收</text>
+      <text x="82" y="78" class="node-copy">解析返回的 KEY=VALUE</text>
+      <text x="82" y="101" class="node-copy">配置结果。</text>
+    </g>
+
+    <g transform="translate(248 500)">
+      <rect width="278" height="132" rx="18" fill="#07111D" stroke="url(#greenStroke)" stroke-width="1.4"/>
+      <rect x="18" y="20" width="46" height="46" rx="13" fill="#0B1F19" stroke="#1D6F48"/>
+      <path d="M42 25L57 33V45C57 55 49 61 42 64C35 61 27 55 27 45V33L42 25Z" stroke="#86EFAC" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M36 45L40 49L49 39" stroke="#86EFAC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="82" y="49" class="node-title">密钥库</text>
+      <text x="82" y="78" class="node-copy">密钥保存到本地</text>
+      <text x="82" y="101" class="node-copy">系统凭据管理器。</text>
+    </g>
+
+    <g transform="translate(581 500)">
+      <rect width="278" height="132" rx="18" fill="#07111D" stroke="url(#cyanStroke)" stroke-width="1.4"/>
+      <rect x="18" y="20" width="46" height="46" rx="13" fill="#081B2A" stroke="#1E5B83"/>
+      <path d="M31 28H51L58 35V59H31V28Z" stroke="#67E8F9" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M50 28V36H58M37 47H52M37 55H48" stroke="#67E8F9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="82" y="49" class="node-title">生成</text>
+      <text x="82" y="78" class="node-copy">写入 .env.local 和</text>
+      <text x="82" y="101" class="node-copy">安全的 .env.example。</text>
+    </g>
+
+    <g transform="translate(914 500)">
+      <rect width="278" height="132" rx="18" fill="#07111D" stroke="url(#violetStroke)" stroke-width="1.4"/>
+      <rect x="18" y="20" width="46" height="46" rx="13" fill="#0B1428" stroke="#334D96"/>
+      <path d="M42 27V39M34 59H50C56 59 60 53 57 48L49 36H35L27 48C24 53 28 59 34 59Z" stroke="#A78BFA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="82" y="49" class="node-title">测试 + MCP</text>
+      <text x="82" y="78" class="node-copy">验证连接，并</text>
+      <text x="82" y="101" class="node-copy">暴露安全 Agent 工具。</text>
+    </g>
+  </g>
+
+  <path d="M350 318H394" stroke="#67E8F9" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" opacity="0.9"/>
+  <path d="M669 318H713" stroke="#67E8F9" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" opacity="0.9"/>
+  <path d="M988 318H1032" stroke="#67E8F9" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" opacity="0.9"/>
+  <path d="M1176 392C1149 455 1105 489 1049 500" stroke="#67E8F9" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" opacity="0.74"/>
+  <path d="M906 566H872" stroke="#67E8F9" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" opacity="0.9"/>
+  <path d="M574 566H540" stroke="#67E8F9" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" opacity="0.9"/>
+  <path d="M256 500C164 475 119 437 111 391" stroke="#67E8F9" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" opacity="0.62"/>
+
+  <g transform="translate(96 674)">
+    <rect width="1248" height="42" rx="21" fill="#06101B" stroke="#1E3A5F"/>
+    <text x="28" y="27" class="chip">人工确认始终在闭环内：登录、验证码、2FA、账单和付费操作都不进入自动化。</text>
+  </g>
+</svg>

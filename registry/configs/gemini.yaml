@@ -1,0 +1,49 @@
+id: gemini
+name: Gemini API
+slug: gemini
+category: llm
+description: Google Gemini API for text and multimodal generation.
+url: https://ai.google.dev
+tags:
+  - llm
+  - google
+capability:
+  - prompt
+  - config
+  - test
+config:
+  urls:
+    homepage: https://ai.google.dev
+    console: https://aistudio.google.com
+    apiKeys: https://aistudio.google.com/app/apikey
+    docs: https://ai.google.dev/gemini-api/docs
+  freeTier:
+    status: free_tier
+    summary: Free API usage may be available with documented limits.
+    requiresCreditCard: false
+    confidence: medium
+  env:
+    - key: GEMINI_API_KEY
+      secret: true
+      public: false
+      required: true
+      pattern: ^[A-Za-z0-9_-]{20,}$
+      description: Gemini API key.
+  prompt:
+    setupUrl: https://aistudio.google.com/app/apikey
+    projectNamePattern: baipiao-${project_slug}
+    steps:
+      - Open https://aistudio.google.com/app/apikey.
+      - Create or select a Google Cloud project named like baipiao-${project_slug}.
+      - Create an API key and copy only the key.
+    safety:
+      - Do not save the Google password or enable paid Google Cloud services.
+    outputFormat:
+      - GEMINI_API_KEY=...
+  test:
+    type: http
+    method: GET
+    url: https://generativelanguage.googleapis.com/v1beta/models?key=${GEMINI_API_KEY}
+    expectedStatus: 200
+  risks:
+    - Keep server-side. Do not expose in frontend code.

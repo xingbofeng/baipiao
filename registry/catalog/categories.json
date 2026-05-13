@@ -1,0 +1,22 @@
+[
+  {
+    "id": "database",
+    "name": "Database",
+    "serviceCount": 1
+  },
+  {
+    "id": "hosting",
+    "name": "Hosting",
+    "serviceCount": 1
+  },
+  {
+    "id": "llm",
+    "name": "LLM",
+    "serviceCount": 3
+  },
+  {
+    "id": "object_storage",
+    "name": "Object Storage",
+    "serviceCount": 1
+  }
+]

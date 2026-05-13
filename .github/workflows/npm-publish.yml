@@ -1,0 +1,173 @@
+name: publish npm
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish, for example 0.1.2"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: npm-publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8.6.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          cache: pnpm
+
+      - name: Use npm with trusted publishing support
+        run: npm install -g npm@latest
+
+      - name: Show tool versions
+        run: |
+          node --version
+          npm --version
+          pnpm --version
+
+      - name: Bump versions for manual release
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          node <<'NODE'
+          const { readFileSync, writeFileSync } = require("node:fs");
+
+          const rawVersion = process.env.RELEASE_VERSION || "";
+          const version = rawVersion.replace(/^v/, "");
+
+          if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(version)) {
+            console.error(`Invalid version: ${rawVersion}`);
+            process.exit(1);
+          }
+
+          const packagePaths = [
+            "package.json",
+            "packages/core/package.json",
+            "packages/mcp-server/package.json",
+            "packages/cli/package.json"
+          ];
+
+          for (const path of packagePaths) {
+            const pkg = JSON.parse(readFileSync(path, "utf8"));
+            pkg.version = version;
+            writeFileSync(path, `${JSON.stringify(pkg, null, 2)}\n`);
+          }
+
+          console.log(`Bumped packages to ${version}`);
+          NODE
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+
+      - name: Refresh lockfile for manual release
+        if: github.event_name == 'workflow_dispatch'
+        run: pnpm install --lockfile-only
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm build
+
+      - name: Check package publish status
+        run: |
+          node <<'NODE'
+          const { execFileSync } = require("node:child_process");
+          const { readFileSync } = require("node:fs");
+
+          const packages = [
+            "packages/core/package.json",
+            "packages/mcp-server/package.json",
+            "packages/cli/package.json"
+          ].map((path) => JSON.parse(readFileSync(path, "utf8")));
+
+          for (const pkg of packages) {
+            try {
+              execFileSync("npm", ["view", `${pkg.name}@${pkg.version}`, "version", "--registry=https://registry.npmjs.org"], { stdio: "pipe" });
+              console.log(`${pkg.name}@${pkg.version} is already published; publish step will skip it.`);
+            } catch {
+              console.log(`${pkg.name}@${pkg.version} is unpublished.`);
+            }
+          }
+          NODE
+
+      - run: mkdir -p .release
+      - run: pnpm --dir packages/core pack --pack-destination ../../.release
+      - run: pnpm --dir packages/mcp-server pack --pack-destination ../../.release
+      - run: pnpm --dir packages/cli pack --pack-destination ../../.release
+
+      - name: Commit manual release version
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          VERSION="${{ inputs.version }}"
+          VERSION="${VERSION#v}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json packages/core/package.json packages/mcp-server/package.json packages/cli/package.json pnpm-lock.yaml
+
+          if git diff --cached --quiet; then
+            echo "Version files already at v${VERSION}; skipping commit."
+          else
+            git commit -m "chore(release): v${VERSION}"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
+
+          if git ls-remote --exit-code --tags origin "refs/tags/v${VERSION}" >/dev/null 2>&1; then
+            echo "Tag v${VERSION} already exists; skipping tag push."
+          else
+            git tag "v${VERSION}"
+            git push origin "v${VERSION}"
+          fi
+
+      - name: Publish packages
+        run: |
+          publish_if_needed() {
+            local package_dir="$1"
+            local tarball_pattern="$2"
+            local name
+            local version
+
+            name="$(node -p "require('./${package_dir}/package.json').name")"
+            version="$(node -p "require('./${package_dir}/package.json').version")"
+
+            if npm view "${name}@${version}" version --registry=https://registry.npmjs.org >/dev/null 2>&1; then
+              echo "${name}@${version} is already published; skipping."
+              return 0
+            fi
+
+            npm publish ${tarball_pattern} --access public --provenance --registry=https://registry.npmjs.org
+          }
+
+          publish_if_needed packages/core ".release/baipiao-core-*.tgz"
+          publish_if_needed packages/mcp-server ".release/baipiao-mcp-*.tgz"
+          publish_if_needed packages/cli ".release/baipiao-[0-9]*.tgz"
+
+      - name: Create GitHub Release for manual release
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          VERSION="${{ inputs.version }}"
+          VERSION="${VERSION#v}"
+
+          if gh release view "v${VERSION}" >/dev/null 2>&1; then
+            echo "Release v${VERSION} already exists; skipping."
+          else
+            gh release create "v${VERSION}" \
+              --title "v${VERSION}" \
+              --generate-notes
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}

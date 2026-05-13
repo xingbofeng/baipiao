@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": "fixture-error",
+  "error": {
+    "code": "MCP_TOOL_FAILED",
+    "message": "Tool failed.",
+    "data": {
+      "baipiaoCode": "SERVICE_NOT_FOUND",
+      "recoverable": true
+    }
+  }
+}

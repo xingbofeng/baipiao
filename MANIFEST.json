@@ -1,0 +1,19 @@
+{
+  "project": "baipiao",
+  "included": [
+    "README.md",
+    "README_zh.md",
+    "docs/INDEX.md",
+    "docs/PRD.md",
+    "docs/API_AND_VAULT.md",
+    "docs/ARCHITECTURE.md",
+    "docs/DATA_SOURCES_AND_PROMPTS.md",
+    "docs/WEBSITE_AND_DOCS.md",
+    "docs/assets/cli-four-panel-preview.png",
+    "docs/assets/product-demo-chinese.gif",
+    "docs/assets/product-demo-english.gif",
+    "docs/assets/agent-setup-loop.svg",
+    "docs/assets/agent-setup-flow-chinese.svg"
+  ],
+  "notes": "Video prompt intentionally excluded per user request."
+}

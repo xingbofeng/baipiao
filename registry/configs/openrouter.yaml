@@ -1,0 +1,49 @@
+id: openrouter
+name: OpenRouter
+slug: openrouter
+category: llm
+description: Unified LLM gateway with OpenAI-compatible API.
+url: https://openrouter.ai
+tags:
+  - llm
+  - openai-compatible
+capability:
+  - prompt
+  - config
+  - test
+config:
+  urls:
+    homepage: https://openrouter.ai
+    console: https://openrouter.ai
+    apiKeys: https://openrouter.ai/settings/keys
+    docs: https://openrouter.ai/docs
+  freeTier:
+    status: free_tier
+    summary: Free models and limited free usage may be available.
+    requiresCreditCard: false
+    confidence: medium
+  env:
+    - key: OPENROUTER_API_KEY
+      secret: true
+      public: false
+      required: true
+      pattern: ^sk-or-v1-[A-Za-z0-9_-]+$
+      description: OpenRouter API key.
+  prompt:
+    setupUrl: https://openrouter.ai/settings/keys
+    projectNamePattern: baipiao-${project_slug}
+    steps:
+      - Open https://openrouter.ai/settings/keys.
+      - Create an API key named baipiao-${project_slug}.
+      - Copy only the generated API key.
+    safety:
+      - Do not purchase credits or click payment upgrade actions.
+    outputFormat:
+      - OPENROUTER_API_KEY=...
+  test:
+    type: openai_compatible_chat
+    baseUrl: https://openrouter.ai/api/v1
+    envKey: OPENROUTER_API_KEY
+    modelHint: openrouter/auto
+  risks:
+    - Keep server-side. Do not expose in frontend code.

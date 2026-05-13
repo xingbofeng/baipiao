@@ -1,0 +1,5 @@
+$ baipiao setup groq
+Prompt copied.
+Waiting for Agent output...
+GROQ_API_KEY stored as ********
+Vault Status: 1 stored, 0 missing

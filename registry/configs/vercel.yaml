@@ -1,0 +1,21 @@
+id: vercel
+name: Vercel
+slug: vercel
+category: hosting
+description: Frontend hosting, previews, and deployment platform.
+url: https://vercel.com
+tags:
+  - hosting
+  - deployment
+capability:
+  - prompt
+config:
+  urls:
+    homepage: https://vercel.com
+    console: https://vercel.com/dashboard
+    docs: https://vercel.com/docs
+  freeTier:
+    status: free_tier
+    summary: Free personal plan available with documented limits.
+    requiresCreditCard: false
+    confidence: medium

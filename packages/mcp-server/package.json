@@ -1,0 +1,50 @@
+{
+  "name": "baipiao-mcp",
+  "version": "1.1.0",
+  "description": "MCP server tools and transports for baipiao.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "!dist/tsconfig.tsbuildinfo",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "agent",
+    "mcp",
+    "stdio",
+    "developer-tools"
+  ],
+  "homepage": "https://baipiao.counterxing.top",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xingbofeng/baipiao.git",
+    "directory": "packages/mcp-server"
+  },
+  "bugs": {
+    "url": "https://github.com/xingbofeng/baipiao/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b --pretty false",
+    "prepack": "node ../../scripts/prepare-npm-package.mjs",
+    "postpack": "node ../../scripts/clean-npm-package.mjs"
+  },
+  "dependencies": {
+    "baipiao-core": "workspace:^",
+    "@modelcontextprotocol/sdk": "^1.21.0"
+  }
+}

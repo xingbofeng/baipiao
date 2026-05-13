@@ -1,0 +1,3 @@
+[2026-05-13T00:00:00.000Z] INFO baipiao command executed successfully
+[2026-05-13T00:00:00.001Z] DEBUG prompt rendered with masked values: GROQ_API_KEY=********
+[2026-05-13T00:00:00.002Z] INFO state persisted to .baipiao/services.json

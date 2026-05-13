@@ -1,0 +1,14 @@
+{
+  "jsonrpc": "2.0",
+  "id": "fixture-prompt",
+  "result": {
+    "tool": "generate_setup_prompt",
+    "output": {
+      "serviceId": "groq",
+      "mode": "structured",
+      "source": "config",
+      "reviewStatus": "accepted",
+      "prompt": "Goal: create a Groq API key for the project.\nOutput only:\nGROQ_API_KEY=...\nSafety: do not paste account passwords."
+    }
+  }
+}

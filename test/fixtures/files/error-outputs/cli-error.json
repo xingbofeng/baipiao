@@ -1,0 +1,9 @@
+{
+  "code": "SECRET_VALIDATION_FAILED",
+  "message": "Value does not match required pattern for GROQ_API_KEY.",
+  "recoverable": true,
+  "details": {
+    "key": "GROQ_API_KEY",
+    "received": "********"
+  }
+}

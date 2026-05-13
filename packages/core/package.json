@@ -1,0 +1,57 @@
+{
+  "name": "baipiao-core",
+  "version": "1.1.0",
+  "description": "Core schemas, registry, prompt, vault, env, and status utilities for baipiao.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "!dist/tsconfig.tsbuildinfo",
+    "registry",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "agent",
+    "mcp",
+    "free-tier",
+    "registry",
+    "developer-tools"
+  ],
+  "homepage": "https://baipiao.counterxing.top",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xingbofeng/baipiao.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/xingbofeng/baipiao/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b --pretty false",
+    "catalog:build": "node dist/registry/sources/buildPipeline.js",
+    "catalog:validate": "node dist/registry/sources/validateCatalog.js",
+    "prepack": "node ../../scripts/prepare-npm-package.mjs",
+    "postpack": "node ../../scripts/clean-npm-package.mjs"
+  },
+  "dependencies": {
+    "yaml": "^2.8.1",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1"
+  }
+}

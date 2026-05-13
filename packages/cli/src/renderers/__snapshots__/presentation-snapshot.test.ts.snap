@@ -1,0 +1,81 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CLI presentation snapshots > matches init panel snapshot with full wordmark 1`] = `
+"$ baipiao init
+
+██████╗  █████╗ ██╗██████╗ ██╗ █████╗  ██████╗
+██╔══██╗██╔══██╗██║██╔══██╗██║██╔══██╗██╔═══██╗
+██████╔╝███████║██║██████╔╝██║███████║██║   ██║
+██╔══██╗██╔══██║██║██╔═══╝ ██║██╔══██║██║   ██║
+██████╔╝██║  ██║██║██║     ██║██║  ██║╚██████╔╝
+╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+BAIPIAO
+
+Let Agent configure free services for you.
+
+Project initialized
+✓ Created .baipiao/project.json
+✓ Created .baipiao/services.json
+✓ Created .env.local
+✓ Created .env.example
+
+Tip: Run 'baipiao search <keyword>' to find free services."
+`;
+
+exports[`CLI presentation snapshots > matches search panel snapshot without full wordmark 1`] = `
+"$ baipiao search llm
+Detected language: en
+Found 3 free LLM services:
+
+1. Groq                     Free Tier
+2. OpenRouter               Free Tier
+3. Gemini API               Limited Free
+
+Quick filters
+baipiao search database
+baipiao search storage
+baipiao search hosting"
+`;
+
+exports[`CLI presentation snapshots > matches setup success panel snapshot without full wordmark 1`] = `
+"$ baipiao setup groq
+
+Groq
+Prompt copied
+Agent output parsed
+
+Progress
+  ✓ format valid
+  ✓ saved to vault
+  ✓ added to .env.local
+  ✓ test
+
+Vault Status
+  - GROQ_API_KEY  stored  gsk_**************************1234
+
+State: tested
+GROQ_API_KEY=gsk_**************************1234
+Saved to Vault: GROQ_API_KEY
+Test: passed"
+`;
+
+exports[`CLI presentation snapshots > matches status panel snapshot with grouped services 1`] = `
+"$ baipiao status
+
+Project
+  Demo Project
+
+AI Services
+  - Groq  tested  tested
+
+Backend Services
+  - Supabase  prompt_generated  not_tested
+
+Vault
+  1 keys stored
+
+Quick Actions
+  $ baipiao test groq
+  $ baipiao vault list
+  $ baipiao env generate"
+`;

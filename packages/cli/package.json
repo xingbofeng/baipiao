@@ -1,0 +1,55 @@
+{
+  "name": "baipiao",
+  "version": "1.1.0",
+  "description": "Prompt-first / MCP-first free developer service configurator CLI.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "baipiao": "./dist/index.js"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "!dist/tsconfig.tsbuildinfo",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "agent",
+    "cli",
+    "mcp",
+    "free-tier",
+    "developer-tools"
+  ],
+  "homepage": "https://baipiao.counterxing.top",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xingbofeng/baipiao.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/xingbofeng/baipiao/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b --pretty false",
+    "prepack": "node ../../scripts/prepare-npm-package.mjs",
+    "postpack": "node ../../scripts/clean-npm-package.mjs"
+  },
+  "dependencies": {
+    "baipiao-core": "workspace:^",
+    "baipiao-mcp": "workspace:^",
+    "clipboardy": "^4.0.0"
+  }
+}
