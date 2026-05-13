@@ -1,6 +1,6 @@
 {
   "name": "baipiao-core",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Core schemas, registry, prompt, vault, env, and status utilities for baipiao.",
   "license": "MIT",
   "type": "module",

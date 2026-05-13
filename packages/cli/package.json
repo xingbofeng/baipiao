@@ -1,6 +1,6 @@
 {
   "name": "baipiao",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Prompt-first / MCP-first free developer service configurator CLI.",
   "license": "MIT",
   "type": "module",

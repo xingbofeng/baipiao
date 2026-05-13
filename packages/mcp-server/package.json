@@ -1,6 +1,6 @@
 {
   "name": "baipiao-mcp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "MCP server tools and transports for baipiao.",
   "license": "MIT",
   "type": "module",
